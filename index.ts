@@ -78,3 +78,27 @@ let bbb : null = null;
 
 let ccc : any = 1
 ccc = "!"
+
+// unknown : 변수의 타입을 미리 알지 못 할 때 사용한다.
+let aaaa : unknown;
+// let bbbb = aaaa + 1;
+if (typeof aaaa === 'number') {
+    let bbbb = a + 1
+}
+
+// void : 아무것도 return하지 않는 함수, 따로 작성할 필요는 없다.
+function hello() {
+    console.log('x');
+}
+
+function hello2(name:string|number) {
+    if (typeof name === "string") {
+        name
+    } else if (typeof name === "number") {
+        name
+    } else {
+        // 여기는 절대 실행되면 안됨
+        name
+    }
+}
+

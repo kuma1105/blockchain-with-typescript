@@ -159,3 +159,20 @@ const add5: Add4 = (a, b, c?: number) => {
 
 console.log(add5(1, 2))
 console.log(add5(1, 2, 3))
+
+
+// Polymorphism, 다형성, many structures
+type SuperPrint = {
+    <TypePlaceholder>(arr: TypePlaceholder[]) : TypePlaceholder // 아팁스크립트가 발견한 타입으로 변경해준다.
+}
+// const superPrint: SuperPrint = (arr) => {
+//     arr.forEach(i => console.log(i))
+// }
+const superPrint: SuperPrint = (arr) => arr[0]
+
+const q = superPrint([1,2,3,4])
+const w = superPrint([true, false, true])
+const e = superPrint(["true"])
+const r = superPrint([1, 2, true, false, "false"])
+
+console.log(q, w, e, r);

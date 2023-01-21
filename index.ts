@@ -466,3 +466,53 @@ const playerL: PlayerLL = {
     lastName: "banana",
     health: 100
 }
+
+
+// Polymorphism
+// Generic은 placeholder 타입으로 사용할 수 있다.
+interface SStorage<T> {
+    [key: string]: T
+}
+
+class LocalStorage<T> {
+    private storage: SStorage<T> = {}
+    set(key: string, value: T) {
+        if (this.storage[key] === undefined) {
+            console.log(`${key} 저장 완료!`);
+            this.storage[key] = value;
+        } else {
+            console.log("이미 존재하는 key값입니다.")
+        }
+    }
+    remove(key: string) {
+        delete this.storage[key]
+    }
+    get(key: string): T {
+        if (this.storage[key] === undefined) {
+            console.log("Storage에 없는 값입니다.");
+        }
+        // console.log(this.storage[key]);
+        return this.storage[key]
+    }
+    clear() {
+        this.storage = {}
+    }
+}
+
+const stringStorage = new LocalStorage<string>();
+stringStorage.get("grape")
+// console.log(stringStorage.get("grape"))
+stringStorage.set("hello", "how are you?")
+// console.log(stringStorage.get("hello"))
+stringStorage.set("hello", "how are you?")
+stringStorage.get("hello")
+
+console.log();
+
+const booleanStorage = new LocalStorage<boolean>();
+booleanStorage.get("true")
+// console.log(booleanStorage.get("true"))
+booleanStorage.set("hello", true);
+// console.log(booleanStorage.get("hello"))
+booleanStorage.set("hello", true);
+booleanStorage.get("hello")

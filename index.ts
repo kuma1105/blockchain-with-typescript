@@ -261,12 +261,15 @@ class Dict {
     def(term: string) {
         return this.words[term]
     }
+    static hello() {
+        return "hello"
+    }
 }
 
 class Word {
     constructor(
-        public term: string,
-        public def: string
+        public readonly term: string,
+        public readonly def: string
     ) { }
 }
 
@@ -275,3 +278,191 @@ const kimchi = new Word("kimchi", "한국의 음식");
 const dict = new Dict()
 dict.add(kimchi)
 dict.def("kimchi")
+Dict.hello()
+
+
+// interface
+type PlayerA = {
+    nickname: string,
+    healthBar: number,
+}
+
+type NickName = string
+type Health = number
+type Friends = Array<string>
+type PlayerB = {
+    nickname: NickName,
+    healthBar: Health,
+}
+
+const nicoA: PlayerA = {
+    nickname: "nico",
+    healthBar: 10
+}
+
+type Food = string;
+const kimchi2: Food = "delicious"
+
+// type이 특정값만 가지도록 제한할 수 있다.
+type Team = "read" | "blue" | "yellow"
+type Health2 = 1 | 5 | 10
+
+// type PlayerC = {
+//     nickname: string,
+//     team: Team,
+//     health: Health2
+// }
+
+// object의 모양을 특정해준다.(interface의 기능은 이것 뿐이다...?!) type 키워드가 interface 키워드에 비해 활용도가 높다.
+interface PlayerC {
+    nickname: string,
+    team: Team,
+    health: Health2
+}
+
+const nicoB: PlayerC = {
+    nickname: "nico",
+    team: "read",
+    health: 1
+}
+
+
+interface UserD {
+    name: string
+}
+
+interface PlayerD extends UserD {
+
+}
+
+const nicoD: PlayerD = {
+    name: "nico"
+}
+
+
+type UserE = {
+    name: string
+}
+
+type PlayerE = UserE & {
+
+}
+
+const nicoE: PlayerE = {
+    name: "nico"
+}
+
+// 같은 interface끼리 합칠 수 있다. type은 못한다.
+interface UserF {
+    name: string
+}
+interface UserF {
+    lastName: string
+}
+interface UserF {
+    health: number
+}
+const nicoF: UserF = {
+    name: "FFF",
+    health: 10,
+    lastName: "YYY"
+}
+
+
+abstract class UserG {
+    constructor(
+        protected firstName: string,
+        protected lastName: string,
+    ) { }
+
+    abstract sayHi(name: string): string
+    abstract fullName(): string
+}
+
+class PlayerG extends UserG {
+    fullName() {
+        return `${this.firstName} ${this.lastName}`
+    }
+    sayHi(name: string): string {
+        return `Hello, ${name}. My name is ${this.fullName()}`
+    }
+}
+interface UserH {
+    firstName: string,
+    lastName: string,
+    sayHi(name: string): string
+    fullName(): string
+}
+interface Human {
+    health: number
+}
+
+// interface를 상속받는 클래스의 생성자는 꼭 public이 되어야 한다...?!
+// interface는 컴파일되면 js에 안보임, abstract는 js에 보임
+//interface는 다중 상속이 가능하다
+class PlayerH implements UserH, Human {
+    constructor(
+        public firstName: string,
+        public lastName: string,
+        public health: 100
+    ) { }
+    fullName() {
+        return `${this.firstName} ${this.lastName}`
+    }
+    sayHi(name: string): string {
+        return `Hello, ${name}. My name is ${this.fullName()}`
+    }
+}
+
+// interface를 type으로 사용할 수 있다.
+// function makeUserH(user: UserH) {
+//     return "hi"
+// }
+function makeUserH(user: UserH): UserH {
+    return {
+        firstName: "J",
+        lastName: user.lastName,
+        fullName: user.fullName,
+        sayHi: (name) => "string"
+    }
+}
+
+console.log(
+    makeUserH({
+        firstName: "J",
+        lastName: "JJ",
+        fullName: () => "Xx",
+        sayHi: (name) => "string"
+    })
+)
+
+// interface는 원하는 메소드와 property를 클래스가 가지도록 강제한다.
+// 추상 클래스와 비슷한 보호를 제공하지만, 인터페이스는 JS 파일에서 보이지 않는다.
+// type와 interface의 차이점으로 type은 새 property를 추가하기 위해 다시 선언될 수 없지만 
+// interface는 항상 상속이 가능하다.
+
+type PlayerK = {
+    name: string
+}
+type PlayerKK = PlayerK & {
+    lastName: string
+}
+const playerK: PlayerKK = {
+    name: "K",
+    lastName: "apple"
+}
+// 
+interface PlayerL {
+    name: string
+}
+interface PlayerLL extends PlayerL {
+    lastName: string
+}
+interface PlayerLL {
+    health: number
+}
+const playerL: PlayerLL = {
+    name: "L",
+    lastName: "banana",
+    health: 100
+}

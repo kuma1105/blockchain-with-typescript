@@ -111,5 +111,51 @@ const add2 = (a:number, b:number) => a + b
 
 // call signature
 type Add = (a:number, b:number) => number
+type Add2 = {
+    (a:number, b:number) : number
+}
 const add3:Add = (a, b) => a + b
 
+// overloading
+// 함수가 여러 개의 call signature를 갖고 있을 때 발생한다
+type Add3 = {
+    (a:number, b:string) : number
+    (a:number, b:number) : number
+}
+
+const add4 : Add3 = (a, b) => {
+    if(typeof b === "string") return a
+    return a + b
+}
+
+
+type Config = {
+    path: string,
+    state: object
+}
+
+type Push = {
+    (path:string):void
+    (config: Config):void
+}
+
+const push: Push = (config) => {
+    if(typeof config === "string") {
+        console.log(config)
+    } else {
+        console.log(config.path)
+    }
+}
+
+
+type Add4 = {
+    (a: number, b:number): number
+    (a: number, b:number, c:number): number
+}
+const add5: Add4 = (a, b, c?: number) => {
+    if(c) return a + b + c 
+    return a + b
+}
+
+console.log(add5(1, 2))
+console.log(add5(1, 2, 3))

@@ -163,16 +163,55 @@ console.log(add5(1, 2, 3))
 
 // Polymorphism, 다형성, many structures
 type SuperPrint = {
-    <TypePlaceholder>(arr: TypePlaceholder[]) : TypePlaceholder // 아팁스크립트가 발견한 타입으로 변경해준다.
+    <T, M>(a: T[], b: M) : T // 타입스크립트가 발견한 타입으로 변경해준다.
 }
 // const superPrint: SuperPrint = (arr) => {
 //     arr.forEach(i => console.log(i))
 // }
-const superPrint: SuperPrint = (arr) => arr[0]
+const superPrint: SuperPrint = (ar) => ar[0]
 
-const q = superPrint([1,2,3,4])
-const w = superPrint([true, false, true])
-const e = superPrint(["true"])
-const r = superPrint([1, 2, true, false, "false"])
+const q = superPrint([1,2,3,4], "x")
+const w = superPrint([true, false, true], 1)
+const e = superPrint(["true"], false)
+const r = superPrint([1, 2, true, false, "false"], [])
 
-console.log(q, w, e, r);
+console.log(q,w,e,r)
+
+function superPrint2<V>(a: V[]) {
+    return a[0]
+}
+
+const qq = superPrint2([1,2,3,4])
+const ww = superPrint2([true, false, true])
+const ee = superPrint2(["true"])
+const rr = superPrint2([1, 2, true, false, "false"])
+
+type Player2<E> = {
+    name: string
+    extraInfo:E
+}
+
+type NicoExtra = {
+    favFood:string
+}
+
+type NicoPlayer = Player2<NicoExtra>
+
+const nico2: NicoPlayer = {
+    name: "nico",
+    extraInfo: {
+        favFood:"kimchi"
+    }
+}
+
+const lynn2: Player2<null> = {
+    name: "lynn",
+    extraInfo: null
+}
+
+type arrNumbers = Array<number>
+
+function printAllNumbers(arr: Array<number>) {
+    // 
+}
+

@@ -8,3 +8,10 @@ class Block {
         return "hi";
     }
 }
+
+import { init, exit } from "myPackage";
+init({
+    url: "true"
+})
+
+exit(1)

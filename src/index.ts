@@ -9,9 +9,10 @@ class Block {
     }
 }
 
-import { init, exit } from "myPackage";
+import { init, exit } from "./myPackage";
 init({
-    url: "true"
+    url: "true",
+    debug: true
 })
 
 exit(1)

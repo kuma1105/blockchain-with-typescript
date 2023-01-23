@@ -38,6 +38,19 @@
 * https://www.typescriptlang.org/tsconfig#strict
 ```javascript
 "compilerOptions" : {
-    "strict": "true"
+    "strict": true
 }
 ```
+
+* TS 파일에서 JS를 허용한다.
+```javascript
+"compilerOptions" : {
+    "allowJs": true
+}
+```
+
+## JSDoc
+https://jsdoc.app/
+* JS에 사용하는 주석 문법
+* JS파일에 '// @ts-check'을 맨 위에 작성하면 TS가 이것을 읽고 해석할 수 있다.
+

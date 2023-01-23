@@ -101,6 +101,7 @@
     "outDir": "build",
     "lib":["ES6","dom"],
     "strict": true,                                      /* Enable all strict type-checking options. */
+    "allowJs": true
   },
   "include": ["src"]
 }

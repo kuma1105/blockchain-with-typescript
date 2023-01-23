@@ -59,3 +59,10 @@ https://jsdoc.app/
 ```
 npm i -D ts-node
 ```
+
+## nodejs를 위한 type 설치
+* TS로 작성된 모듈을 설치..!
+* https://github.com/DefinitelyTyped/DefinitelyTyped
+```
+npm i -D @types/{node}
+```

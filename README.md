@@ -54,3 +54,8 @@ https://jsdoc.app/
 * JS에 사용하는 주석 문법
 * JS파일에 '// @ts-check'을 맨 위에 작성하면 TS가 이것을 읽고 해석할 수 있다.
 
+## ts-node 패키지
+* TS파일을 바로 실행하고 확인할 수 있다.
+```
+npm i -D ts-node
+```

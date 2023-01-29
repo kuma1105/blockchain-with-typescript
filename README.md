@@ -64,5 +64,6 @@ npm i -D ts-node
 * TS로 작성된 모듈을 설치..!
 * https://github.com/DefinitelyTyped/DefinitelyTyped
 ```
-npm i -D @types/{node}
+npm i -D @types/node
+npm i -D @types/{node 라이브러리 이름}
 ```

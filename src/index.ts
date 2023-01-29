@@ -52,8 +52,16 @@ class Blockchain {
         this.blocks.push(newBlock);
     }
     public getBlocks() {
-        return this.blocks;
+        // 기존 배열 대신에 새로운 배열을 리턴해준다.
+        return [...this.blocks];
     }
 }
 
-const blockshain = new Blockchain()
+const blockchain = new Blockchain()
+
+blockchain.addBlock("First one");
+blockchain.addBlock("Second one");
+blockchain.addBlock("Third one");
+
+console.log(blockchain.getBlocks());
+
